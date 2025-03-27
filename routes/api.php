@@ -6,9 +6,6 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\LoginUserController;
 use App\Http\Controllers\TaskController;
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post("/tasks", [TaskController::class, 'store']);
@@ -20,10 +17,3 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::post('/login', [LoginUserController::class, 'store']);
 Route::post('/register', [RegisterUserController::class, 'store']);
-
-// Route::get('/verify-token', function (Request $request) {
-//     return response()->json([
-//         'message' => 'Token is valid',
-//         'user' => $request->user()
-//     ]);
-// })->middleware('auth:sanctum');  // Add this middleware

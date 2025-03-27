@@ -25,14 +25,12 @@ class LoginUserController extends Controller
         // Revoke all existing tokens
         $user->tokens()->delete();
 
-        // Create new token with specific abilities
-        $token = $user->createToken('auth-token', ['*']);
+        // Create new token with explicit abilities and expiration
+        $token = $user->createToken('auth-token', ['*'], now()->addDay());
 
         return response()->json([
             'message' => 'Login successful',
-            // 'user' => $user,
-            // 'token_type' => 'Bearer',
-            'access_token' => $token->plainTextToken
+            'token' => $token->plainTextToken
         ], 200);
     }
 }
